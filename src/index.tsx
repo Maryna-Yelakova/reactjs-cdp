@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 
-import { Hello, TestPureComponent, FunctionTestComponent} from './app.component';
+import { TestPureComponent, FunctionTestComponent} from './app.component';
+import { Search } from './search/search.component'
 
 render(
   <div>
-  <Hello />
+  <Search />
   <TestPureComponent />
   <FunctionTestComponent
       name="Test Function Component!"

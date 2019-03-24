@@ -1,0 +1,12 @@
+.search_block {
+  background-color: grey;
+  width: 700px;
+  height:200px;
+  margin: 10px 40px;
+}
+.search_input {
+  display: block;
+  position: relative;
+  float: right;
+  width : 120px;
+}

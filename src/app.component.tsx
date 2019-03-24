@@ -1,12 +1,5 @@
 import * as React from 'react';
 
-export class Hello extends React.Component {
-  name:string ='Component!'
-
-    render() {
-      return  <h1>Hello, {this.name} </h1>;
-    }
-}
 
 export class TestPureComponent extends React.PureComponent {
   someProperty:string ="PureComponent!"

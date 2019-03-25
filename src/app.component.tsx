@@ -4,6 +4,7 @@ import { AppState } from './models/app.interface';
 import { MockMovieList, MockMovie} from './models/mockdata';
 import { Search } from './search/search.component';
 import { List } from './list/list.component';
+import { Movie } from './movie/movie.component';
 import './app.component.css';
 
 export class AppComponent extends React.Component<{},AppState> {
@@ -32,8 +33,8 @@ export class AppComponent extends React.Component<{},AppState> {
         <div className="container">
             <Search  query={this.state.query}  onChange={this.onChange}  />
             <List list={this.state.list} selectMovie={this.selectMovie} />
+            <Movie movie={this.state.movie} />
         </div>
         );
       }
-
 }

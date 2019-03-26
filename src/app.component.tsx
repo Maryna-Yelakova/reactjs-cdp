@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { AppState } from './models/app.interface';
+import { HandleErrorComponent } from './handle-error.component';
 import { MockMovieList, MockMovie} from './models/mockdata';
 import { Search } from './search/search.component';
 import { List } from './list/list.component';
@@ -31,9 +32,11 @@ export class AppComponent extends React.Component<{},AppState> {
   render() {
         return (
         <div className="container">
+          <HandleErrorComponent>
             <Search  query={this.state.query}  onChange={this.onChange}  />
             <List list={this.state.list} selectMovie={this.selectMovie} />
             <Movie movie={this.state.movie} />
+          </HandleErrorComponent>
         </div>
         );
       }

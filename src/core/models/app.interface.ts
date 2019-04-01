@@ -1,10 +1,10 @@
 export interface AppState {
       query:string;
-      list:Array<Movie>;
-      movie: Movie;
+      list:Array<MovieModel>;
+      movie: MovieModel;
 }
 
-export interface Movie {
+export interface MovieModel {
       id: number;
       title: string;
       tagline: string;

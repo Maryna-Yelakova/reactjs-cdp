@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie should render correctly 1`] = `
+<div
+  className="movie"
+>
+  <img
+    alt="picture"
+    height="302"
+    src={
+      Object {
+        "default": "test-file-stub",
+      }
+    }
+    width="200"
+  />
+  <div
+    className="movie_info"
+  >
+    <div
+      className="movie_main-info"
+    >
+      <h2
+        className="movie_name"
+      />
+      <p
+        className="movie_genre"
+      >
+        0
+      </p>
+    </div>
+    <p
+      className="movie_description"
+    >
+      Some mock overview
+    </p>
+  </div>
+</div>
+`;

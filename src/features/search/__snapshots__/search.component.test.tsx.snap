@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search should render correctly 1`] = `
+<div
+  className="search_block"
+>
+  <div
+    className="search_content"
+  >
+    <h1
+      className="search_heading"
+    >
+      Some Movies-box
+    </h1>
+    <div>
+      <p
+        className="search_label"
+      >
+        Find your movie
+      </p>
+      <div
+        className="search_holder"
+      >
+        <input
+          className="search_input"
+          onChange={[MockFunction]}
+          type="text"
+          value="MockQuery"
+        />
+      </div>
+      <div
+        className="search_control"
+      >
+        <div
+          className="search_control_filter"
+        >
+          <span>
+            Search by:
+          </span>
+          <button
+            className="search_control_button"
+          >
+            Title
+          </button>
+          <button
+            className="search_control_button"
+          >
+            Genre
+          </button>
+        </div>
+        <button
+          className="search_control_button"
+        >
+          SEARCH
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

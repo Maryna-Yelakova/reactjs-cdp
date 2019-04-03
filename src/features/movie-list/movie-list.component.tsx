@@ -1,5 +1,5 @@
 import * as React from 'react';
-// import './movie-list.component.css';
+import './movie-list.component.css';
 
 import * as posterImage from '../../assets/images/poster1.jpg';
 

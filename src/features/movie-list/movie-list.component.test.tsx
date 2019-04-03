@@ -1,5 +1,5 @@
 import * as  React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount, render } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 
 import { MovieList } from './movie-list.component';
@@ -11,6 +11,17 @@ describe('MovieList', () => {
    const mockSelectMovie = jest.fn();
    const component = shallow(<MovieList list={MockMovieList} selectMovie={mockSelectMovie} />);
 
+   expect(component).toBeDefined();
    expect(shallowToJson(component)).toMatchSnapshot();
  });
+
+ it('handle click correctly', () => {
+   const mockSelectMovie = jest.fn();
+
+  const component = shallow(<MovieList list={MockMovieList} selectMovie={mockSelectMovie} />);
+  const item = component.find('.movie_list_item').first();
+  item.simulate('click');
+
+  expect(mockSelectMovie).toHaveBeenCalled();
+ })
 });

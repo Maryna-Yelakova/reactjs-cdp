@@ -10,7 +10,20 @@
        rules: [
            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
-           { test: /\.css$/, loader: "style-loader!css-loader" }
+           { test: /\.css$/, loader: "style-loader!css-loader" },
+           {
+              test: /\.(gif|png|jpe?g|svg)$/i,
+              use: [
+                'file-loader',
+                {
+                  loader: 'image-webpack-loader',
+                  options: {
+                    bypassOnDebug: true, // webpack@1.x
+                    disable: true, // webpack@2.x and newer
+                  },
+                },
+              ],
+            }
        ]
    },
    resolve: {

@@ -6,7 +6,7 @@ export const MockMovie = {
       vote_count: 0,
       release_date: '',
       poster_path: '',
-      overview: '',
+      overview: 'Some mock overview',
       budget: 0,
       revenue: 0,
       runtime: 0,

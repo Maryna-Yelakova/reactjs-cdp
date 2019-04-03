@@ -5,9 +5,15 @@
         "noImplicitAny": false,
         "module": "commonjs",
         "target": "es5",
-        "jsx": "react"
+        "jsx": "react",
+        "types": [
+           "node"
+        ],
     },
     "include": [
         "./src/**/*"
+    ],
+    "exclude":[
+      "./src/**/*.test.tsx"
     ]
 }

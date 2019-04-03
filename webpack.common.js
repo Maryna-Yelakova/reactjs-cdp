@@ -1,6 +1,6 @@
  const path = require('path');
  const CleanWebpackPlugin = require('clean-webpack-plugin');
- const HtmlWebpackPlugin = require('html-webpack-plugin')
+ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
  module.exports = {
    entry: {
@@ -9,7 +9,21 @@
    module: {
        rules: [
            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-           { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+           { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+           { test: /\.css$/, loader: "style-loader!css-loader" },
+           {
+              test: /\.(gif|png|jpe?g|svg)$/i,
+              use: [
+                'file-loader',
+                {
+                  loader: 'image-webpack-loader',
+                  options: {
+                    bypassOnDebug: true, // webpack@1.x
+                    disable: true, // webpack@2.x and newer
+                  },
+                },
+              ],
+            }
        ]
    },
    resolve: {
@@ -17,7 +31,7 @@
    },
    plugins: [
      new CleanWebpackPlugin(),
-     new HtmlWebpackPlugin({filename: 'index.html'})
+     new HtmlWebpackPlugin({template:'./src/template.html'})
    ],
    output: {
     filename: 'build.js',

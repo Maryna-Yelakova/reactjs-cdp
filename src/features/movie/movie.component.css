@@ -1,0 +1,22 @@
+.movie {
+	display: flex;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 40px;
+	margin-bottom: 20px;
+}
+
+.movie_info {
+	padding: 0 40px;
+}
+
+.movie_name {
+	font-size: 30px;
+	line-height: 40px;
+	font-weight: bold;
+	color: #e83e63;
+}
+
+.movie_description {
+	padding: 40px 0;
+}

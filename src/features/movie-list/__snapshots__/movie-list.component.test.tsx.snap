@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieList should render correctly 1`] = `
+<ul
+  className="movie_list"
+>
+  <li
+    className="movie_list_item"
+    key="1"
+    onClick={[Function]}
+  >
+    <div
+      className="movie_list_item-content"
+    >
+      <img
+        alt="picture"
+        height="302"
+        src={
+          Object {
+            "default": "test-file-stub",
+          }
+        }
+        width="200"
+      />
+      <div
+        className="movie_list_info"
+      >
+        <p
+          className="movie_list_name"
+        >
+          Imperial concubine
+        </p>
+        <i
+          className="movie_list_genre"
+        >
+          2045
+        </i>
+      </div>
+    </div>
+  </li>
+  <li
+    className="movie_list_item"
+    key="2"
+    onClick={[Function]}
+  >
+    <div
+      className="movie_list_item-content"
+    >
+      <img
+        alt="picture"
+        height="302"
+        src={
+          Object {
+            "default": "test-file-stub",
+          }
+        }
+        width="200"
+      />
+      <div
+        className="movie_list_info"
+      >
+        <p
+          className="movie_list_name"
+        >
+          Meng Qi Shi Shen
+        </p>
+        <i
+          className="movie_list_genre"
+        >
+          764
+        </i>
+      </div>
+    </div>
+  </li>
+</ul>
+`;

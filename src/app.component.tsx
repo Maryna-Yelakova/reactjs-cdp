@@ -16,28 +16,29 @@ export class AppComponent extends React.Component<{},AppState> {
       list: MockMovieList,
       movie: MockMovie
     };
+
     this.onChange = this.onChange.bind(this);
     this.selectMovie = this.selectMovie.bind(this);
  }
 
-   onChange(e) {
-     const val = e.target.value;
-     this.setState({query: val});
+  onChange(e) {
+    const val = e.target.value;
+    this.setState({ query: val });
   }
 
-  selectMovie(movie){
-    this.setState({movie: movie});
+  selectMovie(movie) {
+    this.setState({ movie: movie });
   }
 
   render() {
-        return (
-        <div className="container">
-          <HandleErrorComponent>
-            <Search  query={this.state.query}  onChange={this.onChange}  />
-            <MovieList list={this.state.list} selectMovie={this.selectMovie} />
-            <Movie {...this.state.movie} />
-          </HandleErrorComponent>
-        </div>
-        );
-      }
+    return (
+      <div className="container">
+        <HandleErrorComponent>
+          <Search query={this.state.query} onChange={this.onChange} />
+          <MovieList list={this.state.list} selectMovie={this.selectMovie} />
+          <Movie {...this.state.movie} />
+        </HandleErrorComponent>
+      </div>
+    );
+  }
 }

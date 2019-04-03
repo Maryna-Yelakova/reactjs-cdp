@@ -9,8 +9,8 @@ import { MockMovieList } from '../../core/models/mockdata';
 describe('MovieList', () => {
  it('should render correctly', () => {
    const mockSelectMovie = jest.fn();
-   const component = shallow(<MovieList  list = {MockMovieList} selectMovie = {mockSelectMovie} />);
-   expect(shallowToJson(component)).toMatchSnapshot();
+   const component = shallow(<MovieList list={MockMovieList} selectMovie={mockSelectMovie} />);
 
+   expect(shallowToJson(component)).toMatchSnapshot();
  });
 });

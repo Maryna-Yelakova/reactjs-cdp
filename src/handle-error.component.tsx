@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export class HandleErrorComponent extends React.Component<{},{hasError:boolean}> {
+export class HandleErrorComponent extends React.Component<{}, { hasError: boolean }> {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,9 +17,9 @@ export class HandleErrorComponent extends React.Component<{},{hasError:boolean}>
   }
 
   render() {
-        if(this.state.hasError){
-          return <h1>Something went wrong</h1>;
-        }
-        return this.props.children;
-      }
+    if (this.state.hasError) {
+      return <h1>Something went wrong</h1>;
+    }
+    return this.props.children;
+  }
 }

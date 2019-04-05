@@ -23,6 +23,7 @@ exports[`Search should render correctly 1`] = `
       >
         <input
           className="search_input"
+          id="query"
           onChange={[MockFunction]}
           type="text"
           value="MockQuery"

@@ -19,6 +19,7 @@ exports[`Movie should render correctly 1`] = `
   >
     <div
       className="movie_main-info"
+      data-cy="info"
     >
       <h2
         className="movie_name"

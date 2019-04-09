@@ -1,6 +1,7 @@
 import * as React from 'react';
-import './movie.component.css';
+import { connect } from 'react-redux';
 
+import './movie.component.css';
 // models
 import { MovieModel } from '../../core/models/app.interface';
 
@@ -8,6 +9,7 @@ import { MovieModel } from '../../core/models/app.interface';
 import * as posterImage from '../../assets/images/poster1.jpg';
 
 export const Movie: React.SFC<MovieModel> = (movie) => {
+
   return (
     <div className="movie">
       <img
@@ -25,4 +27,5 @@ export const Movie: React.SFC<MovieModel> = (movie) => {
       </div>
     </div>
   );
+
 }

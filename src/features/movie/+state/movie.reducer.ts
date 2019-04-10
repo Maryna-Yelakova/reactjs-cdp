@@ -5,11 +5,11 @@ import { MovieModel } from '../../../core/models/app.interface';
 export function movieReducer(
   state: MovieModel = movieInitialState,
   action
-){
-  switch(action.type) {
+) {
+  switch (action.type) {
 
     case movie.ActionTypes.SELECT_MOVIE:
-     return {...state, movie: action.payload };
+      return { ...state, movie: action.payload };
 
     default:
       return state;

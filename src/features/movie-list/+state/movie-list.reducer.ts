@@ -7,12 +7,12 @@ export function movieListReducer(
   action
 ){
   switch (action.type) {
-
-  case movieList.ActionTypes.GET_MOVIES: {
-    return [...state, action.payload];
+    case movieList.ActionTypes.GET_MOVIES: {
+      console.log('LOL', action.payload);
+      return action.payload;
+    }
+    default: {
+      return state;
+    }
   }
-  default: {
-    return state;
-  }
- }
 }

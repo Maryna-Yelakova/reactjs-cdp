@@ -1,43 +1,49 @@
 import * as React from 'react';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import thunk from "redux-thunk";
 import { connect } from 'react-redux'
 
-import { RootReducer } from './features/reducers/index';
 import { AppState } from './core/models/app.interface';
 import { HandleErrorComponent } from './handle-error.component';
 import { MockMovieList, MockMovie} from './core/models/mockdata';
 import { Search } from './features/search/search.component';
 import { MovieList } from './features/movie-list/movie-list.component';
 import { Movie } from './features/movie/movie.component';
-import { getMoviesAction } from './features/movie-list/+state/movie-list.actions'
+import { getMoviesAction } from './features/movie-list/+state/movie-list.actions';
+
+// styles
 import './app.component.css';
 
-const store = createStore(RootReducer, applyMiddleware(thunk));
+export interface AppPropsModel {
+  getMoviesAction: () => {},
+  listing: any[],
+}
 
-const mapStateToProps = state => state;
-const mapDispatchToProps = {
-  ...getMoviesAction // will be wrapped into a dispatch call
-};
-
-
-export class AppComponent extends React.Component<{},AppState> {
+export class AppComponent extends React.Component<AppPropsModel, AppState> {
   constructor(props) {
     super(props);
     this.state = {
       query: "",
-      list: MockMovieList,
-      movie: MockMovie
+      list: [],
+      movie: MockMovie,
     };
 
     this.onChange = this.onChange.bind(this);
     this.selectMovie = this.selectMovie.bind(this);
- }
+  }
 
- componentDidMount() {
-  this.props.getMoviesAction();
-}
+  componentWillReceiveProps(nextProps, thisState) {
+    const { listing: list } = nextProps;
+
+    if (list && list.length) {
+      this.setState({
+        list,
+      });
+    }
+  }
+
+  componentDidMount() {
+    console.log('LOL', this.props);
+    this.props.getMoviesAction();
+  }
 
   onChange(e) {
     const val = e.target.value;
@@ -50,20 +56,24 @@ export class AppComponent extends React.Component<{},AppState> {
 
   render() {
     return (
-      <Provider store={store}>
-        <div className="container">
-          <HandleErrorComponent>
-            <Search query={this.state.query} onChange={this.onChange} />
-            <MovieList list={this.state.list} selectMovie={this.selectMovie} />
-            <Movie {...this.state.movie} />
-          </HandleErrorComponent>
-        </div>
-      </Provider>
+      <div className="container">
+        <HandleErrorComponent>
+          <Search query={this.state.query} onChange={this.onChange} />
+          <MovieList list={this.state.list} selectMovie={this.selectMovie} />
+          <Movie {...this.state.movie} />
+        </HandleErrorComponent>
+      </div>
     );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    listing: state.movieList,
+  };
+};
+
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(AppComponent)
+  { getMoviesAction },
+)(AppComponent);

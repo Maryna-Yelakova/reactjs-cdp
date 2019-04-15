@@ -17,7 +17,7 @@ export const Movie: React.SFC<MovieModel> = (movie) => {
         alt="picture"
       />
       <div className="movie_info">
-        <div className="movie_main-info">
+        <div className="movie_main-info" data-cy="info">
           <h2 className="movie_name">{movie.title}</h2>
           <p className="movie_genre">{movie.vote_average}</p>
         </div>

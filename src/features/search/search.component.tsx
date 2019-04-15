@@ -9,7 +9,7 @@ export const Search = ({query, onChange}) => {
               <div>
                 <p className="search_label">Find your movie</p>
                 <div className="search_holder">
-                  <input type="text" className="search_input" value={query} onChange={onChange}/>
+                  <input type="text" className="search_input" id="query" value={query} onChange={onChange}/>
                 </div>
                 <div className="search_control">
                   <div className="search_control_filter">

@@ -9,7 +9,7 @@ export function movieReducer(
   switch (action.type) {
 
     case movie.ActionTypes.SELECT_MOVIE:
-      return { ...state, movie: action.payload };
+      return action.payload;
 
     default:
       return state;

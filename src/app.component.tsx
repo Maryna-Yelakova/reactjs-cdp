@@ -8,6 +8,7 @@ import { Search } from './features/search/search.component';
 import { MovieList } from './features/movie-list/movie-list.component';
 import { Movie } from './features/movie/movie.component';
 import { getMoviesAction } from './features/movie-list/+state/movie-list.actions';
+import { selectMovieAction } from './features/movie/+state/movie.actions';
 
 // styles
 import './app.component.css';
@@ -15,6 +16,8 @@ import './app.component.css';
 export interface AppPropsModel {
   getMoviesAction: () => {},
   listing: any[],
+  selectMovieAction: (id) => {},
+  movie: any
 }
 
 export class AppComponent extends React.Component<AppPropsModel, AppState> {
@@ -31,11 +34,14 @@ export class AppComponent extends React.Component<AppPropsModel, AppState> {
   }
 
   componentWillReceiveProps(nextProps, thisState) {
-    const { listing: list } = nextProps;
+    console.log(nextProps, 'nextProps')
+    const { listing: list,
+            movie: movie } = nextProps;
 
     if (list && list.length) {
       this.setState({
         list,
+        movie,
       });
     }
   }
@@ -43,15 +49,15 @@ export class AppComponent extends React.Component<AppPropsModel, AppState> {
   componentDidMount() {
     console.log('LOL', this.props);
     this.props.getMoviesAction();
-  }
+    }
 
   onChange(e) {
     const val = e.target.value;
     this.setState({ query: val });
   }
 
-  selectMovie(movie) {
-    this.setState({ movie: movie });
+  selectMovie(movieId) {
+    this.props.selectMovieAction(movieId);
   }
 
   render() {
@@ -70,10 +76,11 @@ export class AppComponent extends React.Component<AppPropsModel, AppState> {
 const mapStateToProps = state => {
   return {
     listing: state.movieList,
+    movie: state.movie
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getMoviesAction },
+  { getMoviesAction, selectMovieAction },
 )(AppComponent);

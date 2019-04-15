@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { connect } from 'react-redux'
 
 import { AppState } from './core/models/app.interface';
 import { HandleErrorComponent } from './handle-error.component';
@@ -6,28 +7,57 @@ import { MockMovieList, MockMovie} from './core/models/mockdata';
 import { Search } from './features/search/search.component';
 import { MovieList } from './features/movie-list/movie-list.component';
 import { Movie } from './features/movie/movie.component';
+import { getMoviesAction } from './features/movie-list/+state/movie-list.actions';
+import { selectMovieAction } from './features/movie/+state/movie.actions';
+
+// styles
 import './app.component.css';
 
-export class AppComponent extends React.Component<{},AppState> {
+export interface AppPropsModel {
+  getMoviesAction: () => {},
+  listing: any[],
+  selectMovieAction: (id) => {},
+  movie: any
+}
+
+export class AppComponent extends React.Component<AppPropsModel, AppState> {
   constructor(props) {
     super(props);
     this.state = {
       query: "",
-      list: MockMovieList,
-      movie: MockMovie
+      list: [],
+      movie: MockMovie,
     };
 
     this.onChange = this.onChange.bind(this);
     this.selectMovie = this.selectMovie.bind(this);
- }
+  }
+
+  componentWillReceiveProps(nextProps, thisState) {
+    console.log(nextProps, 'nextProps')
+    const { listing: list,
+            movie: movie } = nextProps;
+
+    if (list && list.length) {
+      this.setState({
+        list,
+        movie,
+      });
+    }
+  }
+
+  componentDidMount() {
+    console.log('LOL', this.props);
+    this.props.getMoviesAction();
+    }
 
   onChange(e) {
     const val = e.target.value;
     this.setState({ query: val });
   }
 
-  selectMovie(movie) {
-    this.setState({ movie: movie });
+  selectMovie(movieId) {
+    this.props.selectMovieAction(movieId);
   }
 
   render() {
@@ -42,3 +72,15 @@ export class AppComponent extends React.Component<{},AppState> {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    listing: state.movieList,
+    movie: state.movie
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getMoviesAction, selectMovieAction },
+)(AppComponent);

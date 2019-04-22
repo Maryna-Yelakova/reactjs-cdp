@@ -1,6 +1,7 @@
 export interface AppState {
-  query:string;
-  list:Array<MovieModel>;
+  query: string;
+  field:string;
+  list: Array<MovieModel>;
   movie: MovieModel;
 }
 

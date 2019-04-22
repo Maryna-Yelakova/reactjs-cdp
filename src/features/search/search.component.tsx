@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './search.component.css';
 
-export const Search = ({query, onChange}) => {
+export const Search = ({query, onChange, setFieldName, field}) => {
   return (
           <div className="search_block">
             <div className="search_content">
@@ -14,8 +14,8 @@ export const Search = ({query, onChange}) => {
                 <div className="search_control">
                   <div className="search_control_filter">
                     <span>Search by:</span>
-                    <button className="search_control_button">Title</button>
-                    <button className="search_control_button">Genre</button>
+                    <button className="search_control_button" onClick={() => setFieldName('title')}>Title</button>
+                    <button className="search_control_button" onClick={() => setFieldName('genre')}>Genre</button>
                   </div>
                   <button className="search_control_button">SEARCH</button>
                 </div>

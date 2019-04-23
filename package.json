@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "cypress":"cypress open",
+    "cypress": "cypress open",
     "start": "node server.js",
     "dev": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
@@ -29,6 +29,7 @@
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",
     "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   },

@@ -1,20 +1,23 @@
 import * as React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { AppState } from './core/models/app.interface';
 import { HandleErrorComponent } from './handle-error.component';
 import { MockMovieList, MockMovie} from './core/models/mockdata';
 import { Search } from './features/search/search.component';
-import { MovieList } from './features/movie-list/movie-list.component';
+import { MovieListPageComponent } from './pages/movie-list-page/movie-list.page';
 import { Movie } from './features/movie/movie.component';
 import { getMoviesAction } from './features/movie-list/+state/movie-list.actions';
 import { selectMovieAction } from './features/movie/+state/movie.actions';
+import { MovieList } from './features/movie-list/movie-list.component';
 import * as movieListActions from './features/movie-list/+state/movie-list.actions';
 import { searchMovieAction, setFieldNameAction } from './features/search/+state/search.actions';
 import { store } from './core/store/rootReducer';
 
 // styles
 import './app.component.css';
+// import { AppContext } from './context';
 
 export interface AppPropsModel {
   getMoviesAction: () => {},
@@ -30,6 +33,8 @@ export interface AppPropsModel {
 }
 
 export class AppComponent extends React.Component<AppPropsModel, AppState> {
+  // static context = AppContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -108,11 +113,19 @@ export class AppComponent extends React.Component<AppPropsModel, AppState> {
   }
 
   render() {
+    // let context = this.context;
     return (
+
       <div className="container">
         <HandleErrorComponent>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={MovieListPageComponent}/>
+            <Route path="/movie/:id" component={Movie}/>
+          </Switch>
+        </Router>
           <Search query={this.state.query}   field={this.state.field} onChange={this.onChange} setFieldName={this.setFieldName} />
-          <MovieList list={this.state.list} selectMovie={this.selectMovie} />
+          <MovieListPageComponent  selectMovie={this.selectMovie} list={this.state.list}/>
           <Movie {...this.state.movie} />
         </HandleErrorComponent>
       </div>
@@ -131,3 +144,5 @@ export default connect(
   mapStateToProps,
   { getMoviesAction, selectMovieAction,   searchMovieAction, setFieldNameAction },
 )(AppComponent);
+//
+// <AppContext.Provider value={this.state.list}></AppContext.Provider

@@ -7,7 +7,7 @@ import { MovieList } from './features/movie-list/movie-list.component';
 import { Movie } from './features/movie/movie.component';
 
 // components
-import AppComponent from './app.component';
+import { AppComponent } from './app.component';
 
 // store
 import { store } from './core/store/rootReducer';

@@ -4,11 +4,10 @@ import { MovieModel } from '../../../core/models/app.interface';
 
 export function movieListReducer(
   state: Array<MovieModel> = movieListInitialState,
-  action
+  action,
 ){
   switch (action.type) {
     case movieList.ActionTypes.GET_MOVIES: {
-      console.log('LOL', action.payload);
       return action.payload;
     }
     default: {

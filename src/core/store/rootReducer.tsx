@@ -14,7 +14,7 @@ const middleware = [
 export const rootReducer = combineReducers({
   movie: movieReducer,
   movieList: movieListReducer,
-  search:searchReducer
+  search: searchReducer
 });
 
 export const store = createStore(rootReducer, applyMiddleware(...middleware));

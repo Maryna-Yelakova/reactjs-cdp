@@ -16,16 +16,14 @@ import { store } from '../../core/store/rootReducer';
 
 
 export interface ListPropsModel {
-  getMoviesAction: () => {},
   listing: any[],
-  selectMovieAction: (id) => {},
   movie: any,
-
-    query:string,
-    field:string,
-
-  searchMovieAction: (val) => {},
-  setFieldNameAction: (field) => {},
+  query: string,
+  field: string,
+  getMoviesAction: () => {},
+  selectMovieAction: (arg) => {},
+  searchMovieAction: (arg) => {},
+  setFieldNameAction: (arg) => {},
 }
 
 
@@ -44,27 +42,9 @@ export class MovieListPageComponent extends React.Component<ListPropsModel, AppS
     this.setFieldName =this.setFieldName.bind(this);
   }
 
-  componentWillReceiveProps(nextProps, thisState) {
-    console.log(nextProps, 'nextProps')
-    const { listing: list,
-            movie: movie,
-            query: query,
-            fiels: field } = nextProps;
-
-    if (list && list.length) {
-      this.setState({
-        list,
-        movie,
-        query,
-        field
-      });
-    }
-  }
-
   componentDidMount() {
-    console.log('LOL', this.props);
     this.props.getMoviesAction();
-    }
+  }
 
   onChange(e) {
     const val = e.target.value;
@@ -75,28 +55,28 @@ export class MovieListPageComponent extends React.Component<ListPropsModel, AppS
     // this.setState({ query: val });
   }
 
-
-
   search(arr, query, field) {
-            if (!query) {
-              return arr;
-            }
+    if (!query) {
+      return arr;
+    }
 
-            let results = [];
-            if(typeof query === 'string'){
-              query = query.toLowerCase();
-            }else{
-              console.log(query);
-            }
-            arr.forEach((item)=> {
-              if(item){
-                if (item[field].toLowerCase().indexOf(query) !== -1 ) {
-                    results.push(item);
-                }
-              }
-            });
-            return results;
-          };
+    let results = [];
+
+    if (typeof query === 'string') {
+      query = query.toLowerCase();
+    } else {
+      console.log(query);
+    }
+    arr.forEach((item) => {
+      if (item) {
+        if (item[field].toLowerCase().indexOf(query) !== -1) {
+          results.push(item);
+        }
+      }
+    });
+
+    return results;
+  };
 
 
   selectMovie(movieId) {
@@ -107,11 +87,25 @@ export class MovieListPageComponent extends React.Component<ListPropsModel, AppS
     this.props.setFieldNameAction(field);
   }
 
-  render(){
+  render() {
+    const { listing } = this.props;
+
     return (
       <div>
-        <Search query={this.state.query}   field={this.state.field} onChange={this.onChange} setFieldName={this.setFieldName} />
-        <MovieList  selectMovie={this.selectMovie} list={this.state.list} />
+        <Search
+          query={this.state.query}
+          field={this.state.field}
+          onChange={this.onChange}
+          setFieldName={this.setFieldName}
+        />
+        {
+          listing &&
+          listing.length &&
+          <MovieList
+            selectMovie={this.selectMovie}
+            list={listing}
+          />
+        }
       </div>
      )
   }
@@ -120,11 +114,11 @@ export class MovieListPageComponent extends React.Component<ListPropsModel, AppS
   const mapStateToProps = state => {
     return {
       listing: state.movieList,
-      movie: state.movie
+      movie: state.movie,
     };
   };
 
   export default connect(
     mapStateToProps,
-    { getMoviesAction, selectMovieAction,   searchMovieAction, setFieldNameAction },
+    { getMoviesAction, selectMovieAction, searchMovieAction, setFieldNameAction },
   )(MovieListPageComponent);

@@ -5,7 +5,6 @@ import { AppState } from './core/models/app.interface';
 import { HandleErrorComponent } from './handle-error.component';
 import  MovieListPageComponent  from './pages/movie-list-page/movie-list.page';
 import { Movie } from './features/movie/movie.component';
-import { store } from './core/store/rootReducer';
 
 // styles
 import './app.component.css';
@@ -20,13 +19,12 @@ export class AppComponent extends React.Component {
     return (
       <div className="container">
         <HandleErrorComponent>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={MovieListPageComponent}/>
-            <Route path="/movie/:id" component={Movie}/>
-          </Switch>
-        </Router>
-        <MovieListPageComponent />
+          <Router>
+            <Switch>
+              <Route exact path="/" component={MovieListPageComponent}/>
+              <Route path="/movie/:id" component={Movie}/>
+            </Switch>
+          </Router>
         </HandleErrorComponent>
       </div>
     );

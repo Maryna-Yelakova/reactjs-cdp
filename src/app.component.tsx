@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AppState } from './core/models/app.interface';
 import { HandleErrorComponent } from './handle-error.component';
 import  MovieListPageComponent  from './pages/movie-list-page/movie-list.page';
+import  MoviePageComponent  from './pages/movie-page/movie.page';
 import { Movie } from './features/movie/movie.component';
 
 // styles
@@ -22,7 +23,7 @@ export class AppComponent extends React.Component {
           <Router>
             <Switch>
               <Route exact path="/" component={MovieListPageComponent}/>
-              <Route path="/movie/:id" component={Movie}/>
+              <Route path="/movie/:id" component={MoviePageComponent}/>
             </Switch>
           </Router>
         </HandleErrorComponent>

@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { withRouter } from 'react-router';
 import './search.component.css';
 
-export const Search = ({query, onChange, setFieldName, field}) => {
+export const Search = withRouter(({history, children, query, onChange, setFieldName, field}) => {
   return (
           <div className="search_block">
             <div className="search_content">
@@ -17,10 +18,10 @@ export const Search = ({query, onChange, setFieldName, field}) => {
                     <button className="search_control_button" onClick={() => setFieldName('title')}>Title</button>
                     <button className="search_control_button" onClick={() => setFieldName('genre')}>Genre</button>
                   </div>
-                  <button className="search_control_button">SEARCH</button>
+                  <button className="search_control_button" onClick={() => history.push(`/search/${query}`)}>SEARCH</button>
                 </div>
               </div>
             </div>
           </div>
           );
-}
+})

@@ -18,7 +18,7 @@ import { store } from '../../core/store/rootReducer';
 export interface ListPropsModel {
   listing: any[],
   movie: any,
-  query: string,
+  // query: string,
   field: string,
   getMoviesAction: () => {},
   selectMovieAction: (arg) => {},
@@ -31,7 +31,7 @@ export class MovieListPageComponent extends React.Component<ListPropsModel, AppS
   constructor(props) {
     super(props);
     this.state = {
-      query: '',
+      // query: '',
       field:'',
       list: [],
       movie: MockMovie
@@ -48,33 +48,23 @@ export class MovieListPageComponent extends React.Component<ListPropsModel, AppS
 
   onChange(e) {
     const val = e.target.value;
-    console.log(val)
     this.props.searchMovieAction(val);
-    const foundedMovies = this.search(this.state.list,val,'title');
+    const foundedMovies = this.search(this.props.listing,val,'title');
     store.dispatch(movieListActions.fetchedMoviesAction(foundedMovies))
-    // this.setState({ query: val });
   }
 
   search(arr, query, field) {
-    if (!query) {
+    if (!query || typeof query !== 'string' ) {
       return arr;
-    }
-
-    let results = [];
-
-    if (typeof query === 'string') {
+    }else{
       query = query.toLowerCase();
-    } else {
-      console.log(query);
     }
+    let results = [];
     arr.forEach((item) => {
-      if (item) {
-        if (item[field].toLowerCase().indexOf(query) !== -1) {
+        if (item && item[field].toLowerCase().indexOf(query) !== -1) {
           results.push(item);
         }
-      }
     });
-
     return results;
   };
 
@@ -93,8 +83,7 @@ export class MovieListPageComponent extends React.Component<ListPropsModel, AppS
     return (
       <div>
         <Search
-          query={this.state.query}
-          field={this.state.field}
+          // query={this.state.query}
           onChange={this.onChange}
           setFieldName={this.setFieldName}
         />
@@ -115,6 +104,7 @@ export class MovieListPageComponent extends React.Component<ListPropsModel, AppS
     return {
       listing: state.movieList,
       movie: state.movie,
+      // query: state.query
     };
   };
 

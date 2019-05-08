@@ -1,5 +1,5 @@
 export interface AppState {
-  query: string;
+  // query: string;
   field:string;
   list: Array<MovieModel>;
   movie: MovieModel;

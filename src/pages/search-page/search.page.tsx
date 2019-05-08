@@ -18,7 +18,7 @@ export class SearchPageComponent extends React.Component<SearchPropsModel, AppSt
   constructor(props) {
     super(props);
     this.state = {
-      query: '',
+      // query:'',
       field:'',
       list: [],
       movie: MockMovie

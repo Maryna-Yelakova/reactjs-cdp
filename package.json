@@ -8,7 +8,8 @@
     "cypress": "cypress open",
     "start": "node server.js",
     "dev": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "server-build": "webpack --config webpack.server.config.js"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,9 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "ts-loader": "^6.0.0",
+    "webpack-node-externals": "^1.7.2"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",

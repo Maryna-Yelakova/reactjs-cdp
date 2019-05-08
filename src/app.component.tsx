@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { StaticRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { AppState } from './core/models/app.interface';
 import { HandleErrorComponent } from './handle-error.component';

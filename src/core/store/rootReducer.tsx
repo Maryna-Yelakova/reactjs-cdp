@@ -11,10 +11,13 @@ const middleware = [
   thunk,
 ];
 
+// const initialState = window.__REDUX_STATE__;
+const initialState = {};
+
 export const rootReducer = combineReducers({
   movie: movieReducer,
   movieList: movieListReducer,
   search: searchReducer
 });
 
-export const store = createStore(rootReducer, applyMiddleware(...middleware));
+export const store = createStore(rootReducer,initialState, applyMiddleware(...middleware));

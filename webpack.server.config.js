@@ -4,10 +4,10 @@ const webpackNodeExternals = require('webpack-node-externals');
 module.exports = {
   mode: 'none',
   entry: {
-    server: './server.js',
+    server: './src/server/server.tsx',
   },
   target: 'node',
-  resolve: { extensions: ['.ts', '.js'] },
+  resolve: { extensions: ['.ts', '.js', '.tsx'] },
   // Make sure we include all node_modules etc
   externals: [/node_modules/],
   output: {
@@ -17,7 +17,22 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.ts$/, loader: 'ts-loader' }
+      { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+      { test: /\.css$/, loader: "style-loader!css-loader" },
+      {
+         test: /\.(gif|png|jpe?g|svg)$/i,
+         use: [
+           'file-loader',
+           {
+             loader: 'image-webpack-loader',
+             options: {
+               bypassOnDebug: true, // webpack@1.x
+               disable: true, // webpack@2.x and newer
+             },
+           },
+         ],
+       }
     ]
   },
   externals: [webpackNodeExternals()]
